@@ -1,0 +1,48 @@
+version: '3'
+services:
+    # Application
+    app:
+        build:
+            context: ./docker/dev
+            dockerfile: app.dockerfile
+        working_dir: /var/www
+        depends_on:
+            - database
+            - web
+        volumes:
+            - ./:/var/www
+        environment:
+            - 'DB_PORT=3306'
+            - 'DB_HOST=database'
+        restart: on-failure
+
+    # Web Server
+    web:
+        build:
+            context: ./docker/dev
+            dockerfile: web.dockerfile
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+        ports:
+            - 8080:80
+        restart: on-failure
+
+    # Database
+    database:
+        build:
+            context: ./docker/dev
+            dockerfile: database.dockerfile
+        volumes:
+            - dbdata:/var/lib/mysql
+        environment:
+            - 'MYSQL_DATABASE=db_database'
+            - 'MYSQL_USER=db_username'
+            - 'MYSQL_PASSWORD=db_password'
+            - 'MYSQL_ROOT_PASSWORD=db_rootpassword'
+        ports:
+            - 33061:3306
+        restart: on-failure
+        
+volumes:
+    dbdata:
