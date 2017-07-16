@@ -33,4 +33,5 @@ $ make install_test
 ```sh
 $ make test
 # tests executions (phpunit)
+# use TEST_ARGS to pass arguments. ej. make test TEST_ARGS='--filter TestClass'
 ```
