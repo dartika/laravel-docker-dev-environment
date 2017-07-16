@@ -1,6 +1,6 @@
 # Laravel Docker Development Environment
 
-Starter configuraiton to develop docker virtualized laravel projects.
+Starter configuration to develop docker virtualized laravel projects.
 
 #### Requirements:
 
@@ -17,7 +17,7 @@ $ make install
 
 ```sh
 $ make up
-# turn on server (8080 web, 33061 mysql) => http://www.appname.localhost
+# turn on server (8080 web, 33061 mysql) => http://www.appname.localhost:8080
 ```
 
 ```sh
